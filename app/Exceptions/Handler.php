@@ -4,7 +4,8 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-
+use InvalidArgumentException;
+use App\Http\Controllers\Controller;
 class Handler extends ExceptionHandler
 {
     /**
@@ -36,6 +37,7 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+
         parent::report($exception);
     }
 
@@ -48,6 +50,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ( $exception instanceof InvalidArgumentException ) {
+            return Controller::apiResponse("400",$exception->getMessage());
+
+        }
         return parent::render($request, $exception);
     }
 }
