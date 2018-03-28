@@ -16,11 +16,13 @@ use Illuminate\Http\Request;
 Route::group(['namespace'=>'Api','middleware'=>'ApiSign'], function () {
     Route::group(['prefix'=>'v1/user','namespace'=>'User\V1'], function () {
         Route::post('/add', 'UserController@add');
+        Route::post('/login', 'UserController@login');
     });
 
     Route::group(['prefix'=>'v1/config','namespace'=>'Config\V1'],function () {
         Route::post('/initdata', 'InitDataController@initdata');
     });
+
 });
 
 Route::group(['prefix'=>'v1/utils','namespace'=>'Api\Utils\V1','middleware'=>'CheckApiToken'],function () {
