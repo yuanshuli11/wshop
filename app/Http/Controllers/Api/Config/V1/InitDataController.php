@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Sys\SysConfig;
 use App\Model\SingleObject\SinSysConfig;
+
 class InitDataController extends Controller
 {
-    public function initdata(){
-        $name  = SysConfig::where('placeholder','wname')->where('status',0)->get();
-       # SinSysConfig::getInstance();
+    public function initdata(Request $request){
 
+        $sys_config = SinSysConfig::getInstance();
+        $name = $sys_config->getPlaceholder('wname');
         return $this->apiResponse(0,'success',$name);
     }
 }

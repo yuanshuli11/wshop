@@ -15,13 +15,16 @@ use Illuminate\Http\Request;
 
 Route::group(['namespace'=>'Api','middleware'=>'ApiSign'], function () {
     Route::group(['prefix'=>'v1/user','namespace'=>'User\V1'], function () {
-        //完成训练军队
         Route::post('/add', 'UserController@add');
     });
 
     Route::group(['prefix'=>'v1/config','namespace'=>'Config\V1'],function () {
-        //完成训练军队
         Route::post('/initdata', 'InitDataController@initdata');
     });
+});
+
+Route::group(['prefix'=>'v1/utils','namespace'=>'Api\Utils\V1','middleware'=>'CheckApiToken'],function () {
+
+    Route::post('/uploadFile', 'FileController@uploadFile');
 
 });

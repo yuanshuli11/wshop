@@ -8,16 +8,16 @@
 
 namespace App\Model\SingleObject;
 
-tail Single
+trait Single
 {
     static private $instance;
 
-    public function getInstance($config=''){
+    public static function getInstance($config=''){
         if(!self::$instance instanceof self){
             if($config){
-                self::$instance new self($config);
+                self::$instance =  new self($config);
             }else{
-                self::$instance new self();
+                self::$instance = new self();
             }
         }
         return self::$instance;

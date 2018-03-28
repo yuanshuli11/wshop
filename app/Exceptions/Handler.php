@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use InvalidArgumentException;
 use App\Http\Controllers\Controller;
+
 class Handler extends ExceptionHandler
 {
     /**

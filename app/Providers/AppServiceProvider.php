@@ -13,7 +13,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // 数据库语句记录
+        \DB::listen(function ($query) {
+            \Log::info($query->sql);
+            \Log::info($query->bindings);
+        });
+        //监听
+       # \App\Services\Listener\CityListener::Listener(); //文章添加记录
     }
 
     /**
