@@ -18,4 +18,10 @@ Route::group(['namespace'=>'Api','middleware'=>'ApiSign'], function () {
         //完成训练军队
         Route::post('/add', 'UserController@add');
     });
+
+    Route::group(['prefix'=>'v1/config','namespace'=>'Config\V1'],function () {
+        //完成训练军队
+        Route::post('/initdata', 'InitDataController@initdata');
+    });
+
 });

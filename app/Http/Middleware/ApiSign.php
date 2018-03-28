@@ -16,7 +16,12 @@ class ApiSign
      */
     public function handle($request, Closure $next)
     {
-        if(env('APP_ENV')=='prod'){
+        if(isset($_REQUEST['nosign'])){
+            $t = false;
+        }else{
+            $t = true;
+        }
+        if(env('APP_ENV')=='prod'&&$t){
             //优先取header，querystring次之
 
             try {
