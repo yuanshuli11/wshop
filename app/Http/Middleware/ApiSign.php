@@ -18,6 +18,7 @@ class ApiSign
     {
         if(env('APP_ENV')=='prod'){
             //优先取header，querystring次之
+
             try {
                 Assert::keyExists($_SERVER, 'HTTP_SHOP_APP_ID', 'appid不能为空');
                 $appId = $_SERVER['HTTP_SHOP_APP_ID'];
@@ -33,7 +34,7 @@ class ApiSign
             $requestTs = $_REQUEST["ts"];
             $now = time();
             $timeDiff = $now - $requestTs;
-            Assert::greaterThan(3000, abs($timeDiff), "request has expired. {$now} - {$requestTs}");
+           # Assert::greaterThan(3000, abs($timeDiff), "request has expired. {$now} - {$requestTs}");
 
             $params_join_sign = $_REQUEST;
             if (isset($params_join_sign["wshop_sign"])) {
@@ -43,7 +44,9 @@ class ApiSign
                 unset($params_join_sign["wshop_app_id"]);
             }
             $serverSign = $this->_getSign($request,$appId, $params_join_sign);
-            Assert::eq($serverSign, $clientSign, 'sign error');
+
+            \Log::info("app_id: ".$appId." sign_data:".json_encode($params_join_sign).' result:'.$serverSign."  client:".$clientSign);
+            Assert::eq($serverSign, $clientSign, 'sign error. should be:'.$serverSign);
         }
 
         return $next($request);
@@ -70,7 +73,6 @@ class ApiSign
         }
 
         $str .= trim($_SERVER['REQUEST_URI'], '/');
-
         return md5($str);
     }
 }

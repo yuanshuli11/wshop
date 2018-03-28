@@ -11,7 +11,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public static function apiResponse($status = 0 , $message = '' , $data='')
+    public  static function apiResponse($status = 0 , $message = '' , $data='')
     {
         return response()->json(['status' => $status, 'message'=>$message ,'values' => $data], 200, [], JSON_UNESCAPED_UNICODE);
     }

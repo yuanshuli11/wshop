@@ -6,5 +6,5 @@
  * Time: 22:58
  */
 return [
-    'wshop'=>'dsnenspwnaqanq10sna',
+    'wshop'=>'7def02b476308cdf833fbcd7b2237c59',
     ];

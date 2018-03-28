@@ -8,6 +8,6 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
     public function add(){
-        echo "cc";
+        return $this->apiResponse(0,"success","调用成功了～");
     }
 }
