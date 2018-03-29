@@ -28,7 +28,7 @@ class ApiSign
                 $appId = $_SERVER['HTTP_SHOP_APP_ID'];
                 Assert::keyExists($_SERVER, 'HTTP_SHOP_SIGN', 'sign不能为空');
                 $clientSign = $_SERVER["HTTP_SHOP_SIGN"];
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 Assert::keyExists($_REQUEST, 'shop_app_id', 'appid不能为空');
                 $appId = $_REQUEST['shop_app_id'];
                 Assert::keyExists($_REQUEST, 'shop_sign', 'sign不能为空');

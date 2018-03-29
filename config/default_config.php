@@ -7,4 +7,5 @@
  */
 return [
     'config_expire_time'=>60,
+    'login_expire_time'=>3600000
 ];

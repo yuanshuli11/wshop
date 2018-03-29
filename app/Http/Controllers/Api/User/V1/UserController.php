@@ -14,12 +14,19 @@ class UserController extends Controller
     }
 
     public function login(Request $request){
+
         $phone_number = $request->get("phone");
         $password = $request->get("password");
         Helper::checkPhoneNumber($phone_number);
         $user = new User();
-        $user->setphone($phone_number)
-             ->setPassword($password);
+        $token = $user->setphone($phone_number)
+             ->setPassword($password)
+             ->login();
+
+        return $this->apiResponse(0,'success',['token'=>$token]);
+    }
+
+    public function getUserInfo(){
 
     }
 
